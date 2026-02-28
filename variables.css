@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+  /* Colors - Background */
+  --color-background-page: #ffffff;
+  --color-background-container: #f0f0f3;
+
+  /* Colors - Content */
+  --color-content-title: #1c2024;
+  --color-content-body: #60646c;
+  --color-content-placeholder: #b9bbc6;
+
+  /* Colors - States */
+  --color-state-hover: rgba(0, 0, 0, 0.08);
+  --color-state-pressed: rgba(0, 0, 0, 0.16);
+
+  /* Colors - Border */
+  --color-border-neutral: #e0e1e6;
+
+  /* Border */
+  --border-width-smooth: 1px;
+
+  /* Spacing */
+  --spacing-0: 0;
+  --spacing-2: 2px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+
+  /* Typography - Font Family */
+  --text-font-family: "Inter", sans-serif;
+
+  /* Typography - Sizes */
+  --text-size-title: 40px;
+  --text-size-body: 16px;
+
+  /* Typography - Line Heights */
+  --text-line-height-title: 44px;
+  --text-line-height-body: 24px;
+
+  /* Typography - Font Weights */
+  --text-weight-regular: 400;
+  --text-weight-medium: 500;
+  --text-weight-bold: 700;
+}

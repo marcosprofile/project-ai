@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude - Conversa com IA</title>
+  <link rel="stylesheet" href="variables.css">
+  <link rel="stylesheet" href="components.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--text-font-family);
+      background-color: var(--color-background-page);
+      color: var(--color-content-body);
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .app-container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Main Content Area */
+    .main-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: var(--spacing-40);
+      overflow-y: auto;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .welcome-section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-24);
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .welcome-title {
+      font-size: var(--text-size-title);
+      font-weight: var(--text-weight-bold);
+      color: var(--color-content-title);
+      line-height: var(--text-line-height-title);
+      margin: 0;
+    }
+
+    .welcome-subtitle {
+      font-size: var(--text-size-body);
+      font-weight: var(--text-weight-regular);
+      color: var(--color-content-body);
+      margin: var(--spacing-16) 0 0 0;
+      line-height: var(--text-line-height-body);
+    }
+
+    .text-field-wrapper {
+      width: 100%;
+      max-width: 480px;
+      margin-top: var(--spacing-24);
+    }
+
+    /* Suggestions Grid */
+    .suggestions-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--spacing-16);
+      width: 100%;
+      max-width: 600px;
+      margin-top: var(--spacing-40);
+    }
+
+    .suggestion-card {
+      padding: var(--spacing-16);
+      background-color: var(--color-background-container);
+      border: var(--border-width-smooth) solid var(--color-border-neutral);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: left;
+    }
+
+    .suggestion-card:hover {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transform: translateY(-4px);
+    }
+
+    .suggestion-icon {
+      font-size: 24px;
+      margin-bottom: var(--spacing-8);
+      display: block;
+    }
+
+    .suggestion-title {
+      font-size: 14px;
+      font-weight: var(--text-weight-medium);
+      color: var(--color-content-title);
+      margin-bottom: var(--spacing-4);
+    }
+
+    .suggestion-desc {
+      font-size: 12px;
+      color: var(--color-content-body);
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: var(--spacing-40);
+      text-align: center;
+      font-size: 12px;
+      color: var(--color-content-body);
+    }
+
+    /* Scrollbar Styling */
+    .main-area::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .main-area::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .main-area::-webkit-scrollbar-thumb {
+      background: var(--color-border-neutral);
+      border-radius: 4px;
+    }
+
+    .main-area::-webkit-scrollbar-thumb:hover {
+      background: var(--color-content-body);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      body {
+        height: auto;
+        overflow: auto;
+        position: relative;
+      }
+
+      .app-container {
+        flex-direction: column;
+      }
+
+      .navbar__sidebar {
+        display: none;
+      }
+
+      .navbar-mobile {
+        display: flex;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      .main-area {
+        padding: var(--spacing-16);
+      }
+
+      .suggestions-container {
+        grid-template-columns: 1fr;
+      }
+
+      .welcome-title {
+        font-size: 28px;
+        line-height: 1.3;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app-container">
+    <!-- Navbar Mobile -->
+    <nav class="navbar-mobile" aria-label="Navegação móvel">
+      <button class="navbar-mobile__btn" aria-label="Menu principal" aria-expanded="false">
+        <img class="navbar-mobile__icon" src="./img/list.svg" alt="" aria-hidden="true">
+      </button>
+      <span class="navbar-mobile__title">Claude</span>
+      <button class="navbar-mobile__btn" aria-label="Nova conversa">
+        <img class="navbar-mobile__icon" src="./img/note-pencil.svg" alt="" aria-hidden="true">
+      </button>
+    </nav>
+
+    <!-- Navbar Sidebar -->
+    <nav class="navbar__sidebar" aria-label="Navegação desktop">
+      <div class="navbar__container">
+        <!-- Top Icon -->
+        <div class="navbar__menu-heading" style="padding: var(--spacing-12); border-radius: 4px; cursor: pointer;">
+          <img src="./img/chats-circle.svg" alt="Logo">
+        </div>
+
+        <!-- Menu Items -->
+        <div class="navbar__menu-body">
+          <!-- Principal Section -->
+          <div class="navbar__menu-heading">
+            Principal
+          </div>
+
+          <div class="navbar__menu-item">
+            <img class="navbar__menu-icon" src="./img/note-pencil.svg" alt="Nova conversa">
+            <p class="navbar__menu-label">Nova conversa</p>
+          </div>
+
+          <div class="navbar__menu-item">
+            <img class="navbar__menu-icon" src="./img/squares-four.svg" alt="Aplicativos">
+            <p class="navbar__menu-label">Aplicativos</p>
+          </div>
+
+          <div class="navbar__menu-item">
+            <img class="navbar__menu-icon" src="./img/magnifying-glass.svg" alt="Pesquisar">
+            <p class="navbar__menu-label">Busca</p>
+          </div>
+
+          <!-- Conversations Section -->
+          <div style="margin-top: var(--spacing-16);">
+            <div class="navbar__menu-heading">
+              Suas conversas
+            </div>
+
+            <div class="navbar__menu-item">
+              <p class="navbar__menu-label">Design System</p>
+            </div>
+
+            <div class="navbar__menu-item">
+              <p class="navbar__menu-label">User Interface</p>
+            </div>
+
+            <div class="navbar__menu-item">
+              <p class="navbar__menu-label">Inteligência Artificial</p>
+            </div>
+
+            <div class="navbar__menu-item">
+              <p class="navbar__menu-label">Front-end Engineer</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings -->
+      <div class="navbar__menu-item" style="width: 100%;">
+        <img class="navbar__menu-icon" src="./img/gear.svg" alt="Configurações">
+        <p class="navbar__menu-label">Configurações</p>
+      </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="main-area">
+      <div class="welcome-section">
+        <!-- Welcome Message -->
+        <div>
+          <h1 class="welcome-title">Por onde começamos?</h1>
+          <p class="welcome-subtitle">Faça uma pergunta, solicite criatividade ou peça ajuda</p>
+        </div>
+
+        <!-- Text Field -->
+        <div class="text-field-wrapper">
+          <div class="text-field">
+            <img class="text-field__icon" src="./img/plus.svg" alt="Adicionar">
+            <input type="text" class="text-field__input" placeholder="Envie sua mensagem...">
+            <img class="text-field__icon" src="./img/microphone.svg" alt="Microfone">
+            <img class="text-field__icon" src="./img/paper-plane-right.svg" alt="Enviar">
+          </div>
+        </div>
+
+        <!-- Suggestions -->
+        <div class="suggestions-container">
+          <div class="suggestion-card">
+            <span class="suggestion-icon">
+              <img src="./img/lightbulb.svg" alt="Icon">
+            </span>
+            <p class="suggestion-title">Ideias criativas</p>
+            <p class="suggestion-desc">Peça sugestões para melhorar seu projeto</p>
+          </div>
+
+          <div class="suggestion-card">
+            <span class="suggestion-icon">
+              <img src="./img/note-pencil.svg" alt="Icon">
+            </span>
+            <p class="suggestion-title">Escrever conteúdo</p>
+            <p class="suggestion-desc">Gere textos para seu website ou blog</p>
+          </div>
+
+          <div class="suggestion-card">
+            <span class="suggestion-icon">
+              <img src="./img/magnifying-glass.svg" alt="Icon">
+            </span>
+            <p class="suggestion-title">Explicar código</p>
+            <p class="suggestion-desc">Entenda como funciona qualquer código</p>
+          </div>
+
+          <div class="suggestion-card">
+            <span class="suggestion-icon">
+              <img src="./img/gear.svg" alt="Icon">
+            </span>
+            <p class="suggestion-title">Resolver problemas</p>
+            <p class="suggestion-desc">Obtenha ajuda para debug de problemas</p>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+          <p>Claude pode cometer erros. Considere verificar informações importantes.</p>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+
+</html>
