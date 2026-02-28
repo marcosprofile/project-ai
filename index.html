@@ -7,6 +7,7 @@
   <title>Claude - Conversa com IA</title>
   <link rel="stylesheet" href="variables.css">
   <link rel="stylesheet" href="components.css">
+  <link rel="stylesheet" href="responsive.css">
   <style>
     * {
       margin: 0;
@@ -141,43 +142,6 @@
     .main-area::-webkit-scrollbar-thumb:hover {
       background: var(--color-content-body);
     }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      body {
-        height: auto;
-        overflow: auto;
-        position: relative;
-      }
-
-      .app-container {
-        flex-direction: column;
-      }
-
-      .navbar__sidebar {
-        display: none;
-      }
-
-      .navbar-mobile {
-        display: flex;
-        position: sticky;
-        top: 0;
-        z-index: 10;
-      }
-
-      .main-area {
-        padding: var(--spacing-16);
-      }
-
-      .suggestions-container {
-        grid-template-columns: 1fr;
-      }
-
-      .welcome-title {
-        font-size: 28px;
-        line-height: 1.3;
-      }
-    }
   </style>
 </head>
 
@@ -188,7 +152,7 @@
       <button class="navbar-mobile__btn" aria-label="Menu principal" aria-expanded="false">
         <img class="navbar-mobile__icon" src="./img/list.svg" alt="" aria-hidden="true">
       </button>
-      <span class="navbar-mobile__title">Claude</span>
+      <span class="navbar-mobile__title">ChatIA</span>
       <button class="navbar-mobile__btn" aria-label="Nova conversa">
         <img class="navbar-mobile__icon" src="./img/note-pencil.svg" alt="" aria-hidden="true">
       </button>
