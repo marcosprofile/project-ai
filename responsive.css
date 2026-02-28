@@ -22,7 +22,7 @@
   }
 
   .main-area {
-    padding: var(--spacing-16);
+    padding: var(--spacing-16) !important;
   }
 
   .suggestions-container {
