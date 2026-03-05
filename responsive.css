@@ -1,8 +1,8 @@
 /* Responsive */
 @media (max-width: 768px) {
   body {
-    height: auto;
-    overflow: auto;
+    height: auto !important;
+    overflow: auto !important;
     position: relative;
   }
 
