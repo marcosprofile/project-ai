@@ -1,4 +1,3 @@
-/* Responsive */
 @media (max-width: 768px) {
   body {
     height: auto !important;
@@ -21,16 +20,16 @@
     z-index: 10;
   }
 
-  .main-area {
+  .welcome {
     padding: var(--spacing-16) !important;
-  }
-
-  .suggestions-container {
-    grid-template-columns: 1fr !important;
-  }
-
-  .welcome-title {
-    font-size: 28px !important;
-    line-height: 1.3 !important;
+    
+    .welcome-title {
+      font-size: 28px !important;
+      line-height: 1.3 !important;
+    }
+    
+    .suggestions-container {
+      grid-template-columns: 1fr !important;
+    }
   }
 }

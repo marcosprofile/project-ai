@@ -8,141 +8,7 @@
   <link rel="stylesheet" href="variables.css">
   <link rel="stylesheet" href="components.css">
   <link rel="stylesheet" href="responsive.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: var(--text-font-family);
-      background-color: var(--color-background-page);
-      color: var(--color-content-body);
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    .app-container {
-      display: flex;
-      min-height: 100vh;
-    }
-
-    /* Main Content Area */
-    .main-area {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      padding: var(--spacing-40);
-      overflow-y: auto;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .welcome-section {
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-24);
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      max-width: 600px;
-      width: 100%;
-    }
-
-    .welcome-title {
-      font-size: var(--text-size-title);
-      font-weight: var(--text-weight-bold);
-      color: var(--color-content-title);
-      line-height: var(--text-line-height-title);
-      margin: 0;
-    }
-
-    .welcome-subtitle {
-      font-size: var(--text-size-body);
-      font-weight: var(--text-weight-regular);
-      color: var(--color-content-body);
-      margin: var(--spacing-16) 0 0 0;
-      line-height: var(--text-line-height-body);
-    }
-
-    .text-field-wrapper {
-      width: 100%;
-      max-width: 480px;
-      margin-top: var(--spacing-24);
-    }
-
-    /* Suggestions Grid */
-    .suggestions-container {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--spacing-16);
-      width: 100%;
-      max-width: 600px;
-      margin-top: var(--spacing-40);
-    }
-
-    .suggestion-card {
-      padding: var(--spacing-16);
-      background-color: var(--color-background-container);
-      border: var(--border-width-smooth) solid var(--color-border-neutral);
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      text-align: left;
-    }
-
-    .suggestion-card:hover {
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-      transform: translateY(-4px);
-    }
-
-    .suggestion-icon {
-      font-size: 24px;
-      margin-bottom: var(--spacing-8);
-      display: block;
-    }
-
-    .suggestion-title {
-      font-size: 14px;
-      font-weight: var(--text-weight-medium);
-      color: var(--color-content-title);
-      margin-bottom: var(--spacing-4);
-    }
-
-    .suggestion-desc {
-      font-size: 12px;
-      color: var(--color-content-body);
-      line-height: 1.4;
-      margin: 0;
-    }
-
-    /* Footer */
-    .footer {
-      margin-top: var(--spacing-40);
-      text-align: center;
-      font-size: 12px;
-      color: var(--color-content-body);
-    }
-
-    /* Scrollbar Styling */
-    .main-area::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    .main-area::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    .main-area::-webkit-scrollbar-thumb {
-      background: var(--color-border-neutral);
-      border-radius: 4px;
-    }
-
-    .main-area::-webkit-scrollbar-thumb:hover {
-      background: var(--color-content-body);
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -221,56 +87,54 @@
     </nav>
 
     <!-- Main Content Area -->
-    <main class="main-area">
-      <div class="welcome-section">
+    <main class="welcome">
+      <section class="welcome__section">
         <!-- Welcome Message -->
         <div>
-          <h1 class="welcome-title">Por onde começamos?</h1>
-          <p class="welcome-subtitle">Faça uma pergunta, solicite criatividade ou peça ajuda</p>
+          <h1 class="welcome__title">Por onde começamos?</h1>
+          <p class="welcome__subtitle">Faça uma pergunta, solicite criatividade ou peça ajuda</p>
         </div>
 
         <!-- Text Field -->
-        <div class="text-field-wrapper">
-          <div class="text-field">
-            <img class="text-field__icon" src="./img/plus.svg" alt="Adicionar">
-            <input type="text" class="text-field__input" placeholder="Envie sua mensagem...">
-            <img class="text-field__icon" src="./img/microphone.svg" alt="Microfone">
-            <img class="text-field__icon" src="./img/paper-plane-right.svg" alt="Enviar">
-          </div>
+        <div class="text-field">
+          <img class="text-field__icon" src="./img/plus.svg" alt="Adicionar">
+          <input type="text" class="text-field__input" placeholder="Envie sua mensagem...">
+          <img class="text-field__icon" src="./img/microphone.svg" alt="Microfone">
+          <img class="text-field__icon" src="./img/paper-plane-right.svg" alt="Enviar">
         </div>
 
         <!-- Suggestions -->
         <div class="suggestions-container">
-          <div class="suggestion-card">
-            <span class="suggestion-icon">
+          <div class="suggestion__card">
+            <span class="suggestion__icon">
               <img src="./img/lightbulb.svg" alt="Icon">
             </span>
-            <p class="suggestion-title">Ideias criativas</p>
-            <p class="suggestion-desc">Peça sugestões para melhorar seu projeto</p>
+            <p class="suggestion__title">Ideias criativas</p>
+            <p class="suggestion__desc">Peça sugestões para melhorar seu projeto</p>
           </div>
 
-          <div class="suggestion-card">
-            <span class="suggestion-icon">
+          <div class="suggestion__card">
+            <span class="suggestion__icon">
               <img src="./img/note-pencil.svg" alt="Icon">
             </span>
-            <p class="suggestion-title">Escrever conteúdo</p>
-            <p class="suggestion-desc">Gere textos para seu website ou blog</p>
+            <p class="suggestion__title">Escrever conteúdo</p>
+            <p class="suggestion__desc">Gere textos para seu website ou blog</p>
           </div>
 
-          <div class="suggestion-card">
-            <span class="suggestion-icon">
+          <div class="suggestion__card">
+            <span class="suggestion__icon">
               <img src="./img/magnifying-glass.svg" alt="Icon">
             </span>
-            <p class="suggestion-title">Explicar código</p>
-            <p class="suggestion-desc">Entenda como funciona qualquer código</p>
+            <p class="suggestion__title">Explicar código</p>
+            <p class="suggestion__desc">Entenda como funciona qualquer código</p>
           </div>
 
-          <div class="suggestion-card">
-            <span class="suggestion-icon">
+          <div class="suggestion__card">
+            <span class="suggestion__icon">
               <img src="./img/gear.svg" alt="Icon">
             </span>
-            <p class="suggestion-title">Resolver problemas</p>
-            <p class="suggestion-desc">Obtenha ajuda para debug de problemas</p>
+            <p class="suggestion__title">Resolver problemas</p>
+            <p class="suggestion__desc">Obtenha ajuda para debug de problemas</p>
           </div>
         </div>
 
@@ -278,7 +142,7 @@
         <div class="footer">
           <p>Claude pode cometer erros. Considere verificar informações importantes.</p>
         </div>
-      </div>
+      </section>
     </main>
   </div>
 </body>
